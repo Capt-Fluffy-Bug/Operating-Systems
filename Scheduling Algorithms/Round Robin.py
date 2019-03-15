@@ -1,14 +1,4 @@
 # Round Robin Scheduling Algorithm
-
-# importing queue
-import queue
-#q = queue.Queue(maxsize = 5)
-
-count = 0
-
-
-
-
 def sort_proc(pid, arrival_time, burst_time):
     for j in range(len(arrival_time)):
         for k in range(len(arrival_time) - j - 1):
@@ -49,9 +39,7 @@ def execProc(k, t):
 
 def RR(pid, arrival_time, burst_time, quantum):
 	pid, arrival_time, burst_time = sort_proc(pid, arrival_time, burst_time)
-	#tempPID = pid.copy()
 	tempARR = arrival_time.copy()
-	#tempBT = burst_time.copy()
 	n = len(pid)
 
 	wait_time = [0] * len(arrival_time)
@@ -59,8 +47,6 @@ def RR(pid, arrival_time, burst_time, quantum):
 	turnaround_time = [0]*len(arrival_time)
 
 	seq = []
-	finish = [False] * len(pid)
-	#finish_time = arrival_time.copy()
 	rem_time = burst_time.copy()
 
 	total = 0
@@ -101,11 +87,6 @@ def RR(pid, arrival_time, burst_time, quantum):
 def findAvgTime(wait_time, turnaround_time):
     total_wt = 0
     total_tat = 0
-
-
-    # print("Process \t Arrival Time \t Burst Time \t Waiting Time \t Turnaround Time \t")
-    # for i in range(len(pid)):
-    #     print(str(pid[i]) + "\t\t\t\t" + str(arrival_time[i]) + "\t\t\t\t" + str(burst_time[i]) + "\t\t\t\t" + str(wait_time[i]) + "\t\t\t\t" + str(turnaround_time[i]))
 
     # calculating total waiting time and total turnaround time
     print("\nAverage waiting time: " + str(sum(wait_time)/len(wait_time)))
