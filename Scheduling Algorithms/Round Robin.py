@@ -17,25 +17,6 @@ def sort_proc(pid, arrival_time, burst_time):
 
     return pid, arrival_time, burst_time
 
-def execProc(k, t):
-
-	if(burst_time[k] <= quantum):
-		finish[k] = True
-		seq[i] = pid[k]
-		# wait_time[k] = 0
-		# turnaround_time[k] = 0
-		t += burst_time[k]
-		i += 1
-
-	else:
-		seq[i] = pid[k]
-		rem_time[k] -= quantum
-		#q.put(pid[i])
-		#count = 1
-		i += 1
-		t += quantum
-		#q.put(k)
-
 
 def RR(pid, arrival_time, burst_time, quantum):
 	pid, arrival_time, burst_time = sort_proc(pid, arrival_time, burst_time)
