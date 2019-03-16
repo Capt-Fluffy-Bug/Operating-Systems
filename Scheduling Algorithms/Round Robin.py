@@ -1,14 +1,5 @@
 # Round Robin Scheduling Algorithm
 
-# importing queue
-import queue
-#q = queue.Queue(maxsize = 5)
-
-count = 0
-
-
-
-
 def sort_proc(pid, arrival_time, burst_time):
     for j in range(len(arrival_time)):
         for k in range(len(arrival_time) - j - 1):
