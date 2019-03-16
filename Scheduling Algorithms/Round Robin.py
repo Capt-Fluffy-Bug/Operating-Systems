@@ -1,4 +1,14 @@
 # Round Robin Scheduling Algorithm
+
+# importing queue
+import queue
+#q = queue.Queue(maxsize = 5)
+
+count = 0
+
+
+
+
 def sort_proc(pid, arrival_time, burst_time):
     for j in range(len(arrival_time)):
         for k in range(len(arrival_time) - j - 1):
@@ -47,14 +57,14 @@ def RR(pid, arrival_time, burst_time, quantum):
 			flag += 1
 			total += rem_time[i]
 			rem_time[i] = 0
-			seq.append(i)
+			seq.append(pid[i])
 			k += 1
 
 		if(rem_time[i] > quantum):
 			wait_time[i] += total - prev[i]
 			rem_time[i] = rem_time[i] - quantum
 			total += quantum
-			seq.append(i)
+			seq.append(pid[i])
 			k += 1
 
 		prev[i] = total
@@ -98,7 +108,6 @@ if __name__ == '__main__':
 
 	print("\nSequence: ",seq)
 
-	print("\nHere,\n 0 = p1,\n 1 = p2,\n 2 = p3,\n 3 = p4")
 
 ''' EXAMPLE:
 PROCESS-ID   ARRIVAL-TIME   BURST-TIME      
