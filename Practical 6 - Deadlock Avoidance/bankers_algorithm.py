@@ -8,7 +8,10 @@ p =3
 
 
 def callBanker(available, maximum, allocated, need):
-	work = available.copy()
+	#work = available.copy()
+	work = [0] * r
+	for i in range(r):
+		work[i] = available[i]
 	finish = [0] * p
 	safeSeq = [0] * p
 	count = 0
@@ -17,7 +20,7 @@ def callBanker(available, maximum, allocated, need):
 	# while all processes haven't finished
 	while(count < p):
 		# to find an unfinished process that satisfies conditions
-		found = 0
+		found = False
 
 		for i in range(p):
 			if(finish[i] == 0):
@@ -25,22 +28,23 @@ def callBanker(available, maximum, allocated, need):
 					if(need[i][j] > work[j]):
 						break
 
-				if(j < r):
-					for k in range(r):
-						work[k] = work[k] + allocated[i][k]
+					if(j == r-1):
+						for k in range(r):
+							work[k] += allocated[i][k]
 
-					safeSeq[count] = i
-					count = count + 1
+						safeSeq[count] = i
+						count = count + 1
 
-					finish[i] = 1
-					found = 1
+						finish[i] = 1
+						found = True
 
-		if(found == 0):
-			print("System is unsafe")
+		if(found == False):
+			print("\nSystem is unsafe.\n\n")
 			return False
 
 	print("\nSystem is safe")
-	print("Safe sequence: ", safeSeq)
+	print("\nSafe sequence: ", *safeSeq)
+	print("\n\n")
 
 	return True
 
@@ -51,7 +55,7 @@ if __name__ == '__main__':
 
 
 	# number of resources available in the system
-	available = np.asarray([3, 5, 5])
+	available = np.asarray([1, 2, 3])
 
 	# the amount of resources a process requires at the max
 	maximum = np.asarray([[2, 5, 1], [1, 3, 3], [3, 2, 1]])
@@ -62,9 +66,9 @@ if __name__ == '__main__':
 	# the amount of resources required by a process to complete execution
 	need = np.subtract(maximum, allocated) 
 
-	print("Available: \n", available)
-	print("\nMaximum: \n", maximum)
-	print("\nAllocated: \n", allocated)
-	print("\nNeed: \n", need)
+	print("Available: \n", *available)
+	print("\nMaximum: \n", *maximum)
+	print("\nAllocated: \n", *allocated)
+	print("\nNeed: \n", *need)
 
 	callBanker(available, maximum, allocated, need)
