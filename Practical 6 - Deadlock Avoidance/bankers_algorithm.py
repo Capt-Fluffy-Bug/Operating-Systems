@@ -8,19 +8,15 @@ p =3
 
 
 def callBanker(available, maximum, allocated, need):
-	#work = available.copy()
-	work = [0] * r
-	for i in range(r):
-		work[i] = available[i]
+	work = available.copy()
 	finish = [0] * p
 	safeSeq = [0] * p
 	count = 0
-	l = []
 
 	# while all processes haven't finished
 	while(count < p):
 		# to find an unfinished process that satisfies conditions
-		found = False
+		found = 0
 
 		for i in range(p):
 			if(finish[i] == 0):
@@ -36,9 +32,9 @@ def callBanker(available, maximum, allocated, need):
 						count = count + 1
 
 						finish[i] = 1
-						found = True
+						found = 1
 
-		if(found == False):
+		if(found == 0):
 			print("\nSystem is unsafe.\n\n")
 			return False
 
